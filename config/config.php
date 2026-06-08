@@ -11,7 +11,7 @@ if (!defined('BASE_URL')) {
     $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $host   = $_SERVER['HTTP_HOST'] ?? 'localhost:8000';
     // Project lives at web root; if served from a subfolder, set EARMS_BASE env.
-    $base   = getenv('EARMS_BASE') ?: '';
+    $base   = getenv('EARMS_BASE') ?: '/earms-defense';
     define('BASE_URL', rtrim($scheme . '://' . $host . $base, '/'));
 }
 
