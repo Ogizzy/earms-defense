@@ -1,0 +1,14 @@
+# EARMS — allow /api/<path> to reach the API front controller under Apache.
+# (The app also works without this via /api/index.php/<path>.)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^api/(.*)$ api/index.php/$1 [L,QSA]
+</IfModule>
+
+# Don't serve raw file payloads or the SQL dumps directly.
+<FilesMatch "\.(sql)$">
+    Require all denied
+</FilesMatch>
+
+# Block direct web access to server-side directories.
+RedirectMatch 403 ^/.*/(config|includes|lib)/.*\.php$
