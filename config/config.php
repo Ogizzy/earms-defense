@@ -12,14 +12,6 @@ if (!defined('BASE_URL')) {
     $host   = $_SERVER['HTTP_HOST'] ?? 'localhost:8000';
     // Project lives at web root; if served from a subfolder, set EARMS_BASE env.
     $base   = getenv('EARMS_BASE') ?: '';
-    // define('BASE_URL', rtrim($scheme . '://' . $host . $base, '/'));
-    if ($base === '' && isset($_SERVER['DOCUMENT_ROOT'])) {
-        $appRoot = str_replace('\\', '/', realpath(__DIR__ . '/..'));
-        $docRoot = str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT']));
-        if (str_starts_with($appRoot, $docRoot)) {
-            $base = rtrim(substr($appRoot, strlen($docRoot)), '/');
-        }
-    }
     define('BASE_URL', rtrim($scheme . '://' . $host . $base, '/'));
 }
 
